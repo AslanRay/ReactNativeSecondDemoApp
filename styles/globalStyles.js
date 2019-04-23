@@ -57,6 +57,87 @@ export default styles = StyleSheet.create({
     },
     deleteButton: {
         alignItems:"center"
+    },
+    authContainer: {
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    inputAuth: {
+        width:"80%",
+        borderBottomColor:"white",
+        borderBottomWidth:1,
+        margin:8,
+        padding:5,
+
+    },
+    textHeading: {
+        fontSize:40,
+        fontWeight:"bold",
+        color:'white'
+    },
+    backGroundImage: {
+        width:"100%",
+        height:"100%"
+    },
+    buttonWithBG: {
+        padding:10,
+        margin:5,
+        borderRadius:5,
+        borderWidth:1,
+        borderColor:"white"
+    },
+    txtBtn: {
+        color:"#FFF",
+        fontSize:18,
+        fontWeight:"bold"
+    },
+    placeHolder: {
+        borderWidth:1,
+        borderColor:"black",
+        backgroundColor:"#eee",
+        width:"95%",
+        height:300,
+        margin:10,
+        padding:10
+
+    },
+    inputSharePlace: {
+        width:"80%",
+        borderBottomColor:"black",
+        borderBottomWidth:1,
+        margin:8,
+        padding:5,
+    },
+    buttonMargin: {
+        margin:8
+    },
+    headingSharePlace: {
+        fontSize:40,
+        fontWeight:"bold",
+        color:'black',
+    },
+    previewImage: {
+        width:"100%",
+        height:"100%"
+    },
+    findPlacesBtnContainer: {
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    findPlacesBtn: {
+        borderColor:'blue',
+        borderWidth:3,
+        borderRadius:50,
+        padding:20,
+    },
+    findPlacesBtnTxt: {
+        color:'blue',
+        fontWeight:'bold',
+        fontSize:26,
+        textAlign:"center"
     }
+
   });
   

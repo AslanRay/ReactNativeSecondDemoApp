@@ -32,7 +32,8 @@ Promise.all([
                       bottomTab: {
                         text: 'Find Place',
                         testID: 'FIRST_TAB_BAR_BUTTON',
-                        icon: sources[0]
+                        icon: sources[0],
+                        selectedIconColor:'blue'
                       },
                       topBar: {
                           title: {
@@ -57,7 +58,8 @@ Promise.all([
                               bottomTab: {
                                 text: 'Share Place',
                                 testID: 'SECOND_TAB_BAR_BUTTON',
-                                icon: sources[1]
+                                icon: sources[1],
+                                selectedIconColor:'blue'
                               },
                               topBar: {
                                 title: {
