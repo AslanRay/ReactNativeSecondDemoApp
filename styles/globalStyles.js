@@ -46,14 +46,17 @@ export default styles = StyleSheet.create({
     modalContainer: {
         margin:22
     },
-    modalImage: {
+    foundImagePlace: {
         height:200,
         width:"100%"
     },
-    modalText: {
+    foundNamePlace: {
         fontWeight:"bold",
         textAlign:"center",
         fontSize:28
+    },
+    deleteButton: {
+        alignItems:"center"
     }
   });
   

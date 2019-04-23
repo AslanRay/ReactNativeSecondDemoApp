@@ -1,67 +1,65 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
-import styles from './styles/globalStyles';
-import PlaceInput from './src/components/PlaceInput/PlaceInput';
-import PlaceList from './src/components/PlaceList/PlaceList';
-import placeImage from './assets/beautiful-place.jpg';
-import PlaceDetail from './src/components/PlaceDetail/PlaceDetails';
-import {connect} from 'react-redux';
-import {addPlace,deletePlace,selectPlace,deselectPlace} from './src/store/actions/index';
+import React from 'react';
+import {Navigation} from 'react-native-navigation';
+import {Provider} from 'react-redux';
 
-class App extends Component {
+import AuthScreen from './src/screens/Auth/Auth';
+import SharePlaceScreen from './src/screens/SharePlace/SharePlace';
+import FindPlaceScreen from './src/screens/FindPlace/FindPlace';
+import PlaceDetails from './src/screens/PlaceDetail/PlaceDetails';
+import SideDrawerScreen from './src/screens/SideDrawer/SideDrawer';
 
-  
-  placeAddedHandler = placeName => {
-    this.props.onAddPlace(placeName);
-  };
+import configureStore from './src/store/configureStore';
+const store = configureStore();
 
-  placeSelectedHandler = key => {
-    this.props.onSelectPlace(key);
-  };
+//Registrando Screens
+//registerComponent toma dos argunentos, el primero es string que
+//sirve de identificador y el segundo es una funcion que devuelve una pantalla
+Navigation.registerComponent('awsm-places.AuthScreen', () => (props) => (
+  <Provider store={store}>
+    <AuthScreen />
+  </Provider>
+), () => AuthScreen);
 
-  placeDeletedHandler = () => {
-    this.props.onDeletePlace();
-    
-  }
+Navigation.registerComponent('awsm-places.SharePlaceScreen', () => (props) => (
+  <Provider store={store}>
+    <SharePlaceScreen />
+  </Provider>
+), () => SharePlaceScreen);
 
-  modalClosedHandler = () => {
-    this.props.onDeselectPlace();
-  }
+Navigation.registerComponent('awsm-places.FindPlaceScreen', () => (props) => (
+  <Provider store={store}>
+    <FindPlaceScreen componentId="findPlaceId" />
+  </Provider>
+), () => FindPlaceScreen);
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <PlaceDetail 
-            selectedPlace ={this.props.selectedPlace}
-            onItemDeleted = {this.placeDeletedHandler}
-            onModalClosed = {this.modalClosedHandler}
-          /> 
-        <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
-        <PlaceList 
-          places={this.props.places}
-          onItemSelected={this.placeSelectedHandler}
-        />
-      </View>
-    );
-  }
-}
+Navigation.registerComponent('awsm-places.PlaceDetailsScreen', () => (props) => (
+  <Provider store={store}>
+    <PlaceDetails {...props}/>
+  </Provider>
+), () => PlaceDetails);
 
-const mapStateToProps = state => {
-  return {
-    //El primer places es de slide del reductor combinado en el configureStore
-    //El segundo places y selectedPlace corresponde a la propiedad dentro del reducer en el initialState
-    places:state.places.places,
-    selectedPlace: state.places.selectedPlace
-  };
-};
+Navigation.registerComponent('awsm-places.SideDrawerScreen', () => (props) => (
+  <Provider store={store}>
+    <SideDrawerScreen  />
+  </Provider>
+), () => SideDrawerScreen);
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddPlace: (name) => dispatch(addPlace(name)),
-    onDeletePlace: () => dispatch(deletePlace()),
-    onSelectPlace: (key) => dispatch(selectPlace(key)),
-    onDeselectPlace: () => dispatch(deselectPlace())
-  };
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(App)
+//Inicialzamos la app en la navegacion
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: 'awsm-places.AuthScreen',
+        options: {
+          topBar: {
+            title: {
+              visible:true,
+              text: "Login",
+              fontSize:14
+            }
+          }
+        }
+      }
+    }
+  });
+});
