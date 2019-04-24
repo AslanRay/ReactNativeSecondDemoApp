@@ -69,7 +69,15 @@ export default styles = StyleSheet.create({
         borderBottomWidth:1,
         margin:8,
         padding:5,
-
+        color:'white'
+    },
+    invalidInput: {
+        borderColor:'red'
+    },
+    disableButton: {
+        backgroundColor:'#eee',
+        color:'#aaa',
+        borderColor:'#eee'
     },
     textHeading: {
         fontSize:40,
