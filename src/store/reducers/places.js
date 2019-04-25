@@ -14,8 +14,10 @@ const reducer = (state = initialState, action) => {
                     key:Math.random().toString(),
                     name:action.placeName,
                     image: {
-                      uri: "https://farm6.staticflickr.com/5681/22867991412_e1aab97729_b.jpg"
-                    }
+                      uri: action.image.uri
+                    },
+                    region:action.region,
+
                 })
             };
         case DELETE_PLACE:

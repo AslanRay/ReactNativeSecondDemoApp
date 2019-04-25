@@ -44,7 +44,11 @@ export default styles = StyleSheet.create({
         width:30
     },
     modalContainer: {
-        margin:22
+        margin:22,
+        
+    },
+    modalSeparator: {
+        margin:10
     },
     foundImagePlace: {
         height:200,
@@ -145,6 +149,10 @@ export default styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:26,
         textAlign:"center"
+    },
+    googleMap: {
+        width:"100%",
+        height:250
     }
 
   });
