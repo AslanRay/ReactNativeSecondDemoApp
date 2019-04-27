@@ -1,4 +1,5 @@
 import {ADD_PLACE,DELETE_PLACE} from './actionTypes';
+import {authGetToken} from './index';
 
 export const addPlace = (placeName,region, image) => {
     return {
@@ -28,6 +29,13 @@ export const addPlace = (placeName,region, image) => {
 // -- DESCARGAR DATOS DE LA DB -- //
 // export const getPlaces = () => {
 //     return dispatch => {
+            // dispatch(authGetToken())
+            // .then(token => {
+            //     return fetch("https://basicdemoapp-f38fb.firebaseio.com/places.json?auth="+token);
+            // })
+            // .catch(() => {
+            //     alert("Token valido no encontrado");
+            // })
 //         fetch("https://basicdemoapp-f38fb.firebaseio.com/places.json")
 //         .catch(err => {
 //             alert("Algo salio mal");

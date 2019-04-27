@@ -5,7 +5,8 @@ const startTabs = () =>
 Promise.all([
     Icons.getImageSource("md-map",30),
     Icons.getImageSource("ios-share-alt",30),
-    Icons.getImageSource("ios-menu",30)
+    Icons.getImageSource("ios-menu",30),
+    Icons.getImageSource("information",30)
 ]).then(sources => {
     Navigation.setRoot({
         root: {
@@ -72,7 +73,34 @@ Promise.all([
                           }
                     }]
                 }
-                }]
+                },{
+                  stack:{
+                      id:'aboutstack',
+                      children: [{
+                          component: {
+                              name: 'awsm-places.AboutScreen',
+                              passProps: {
+                                text: 'This is tab About'
+                              },
+                              options: {
+                                bottomTab: {
+                                  text: 'About',
+                                  testID: 'SECOND_TAB_BAR_BUTTON',
+                                  icon: sources[3],
+                                  selectedIconColor:'blue'
+                                },
+                                topBar: {
+                                  title: {
+                                      text: "About",
+                                      fontSize: 20,
+                                      alignment: "center"
+                                  }
+                              }
+                              }
+                            }
+                      }]
+                  }
+                  }]
               }
             }
           },

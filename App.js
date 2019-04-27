@@ -7,8 +7,11 @@ import SharePlaceScreen from './src/screens/SharePlace/SharePlace';
 import FindPlaceScreen from './src/screens/FindPlace/FindPlace';
 import PlaceDetails from './src/screens/PlaceDetail/PlaceDetails';
 import SideDrawerScreen from './src/screens/SideDrawer/SideDrawer';
+import AboutScreen from './src/screens/About/About';
+import authNavigation from './src/screens/AuthScreen/AuthScreen';
 
 import configureStore from './src/store/configureStore';
+import About from './src/screens/About/About';
 const store = configureStore();
 
 //Registrando Screens
@@ -44,21 +47,31 @@ Navigation.registerComponent('awsm-places.SideDrawerScreen', () => (props) => (
   </Provider>
 ), () => SideDrawerScreen);
 
+Navigation.registerComponent('awsm-places.AboutScreen', () => (props) => (
+  <Provider store={store}>
+    <About  />
+  </Provider>
+), () => About);
+
 //Inicialzamos la app en la navegacion
 Navigation.events().registerAppLaunchedListener(() => {
+  // authNavigation();
   Navigation.setRoot({
     root: {
-      component: {
-        name: 'awsm-places.AuthScreen',
-        options: {
-          topBar: {
-            title: {
-              visible:true,
-              text: "Login",
-              fontSize:14
+      stack: {
+        id:'authRoot',
+        children: [{
+          component: {
+            id:'authRoot',
+            name: 'awsm-places.AuthScreen',
+            options: {
+              topBar: {
+                visible:false,
+                drawBehind:true
+              }
             }
           }
-        }
+        }]
       }
     }
   });

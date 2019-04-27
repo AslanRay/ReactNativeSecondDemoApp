@@ -3,12 +3,15 @@ package com.midlvldemo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +45,8 @@ public class MainApplication extends NavigationApplication {
                             return Arrays.<ReactPackage>asList(
                                 new VectorIconsPackage(),
                                 new MapsPackage(),
-                                    new ImagePickerPackage()
+                                    new ImagePickerPackage(),
+                                    new ReactNativeRestartPackage()
                             );
         }
 
