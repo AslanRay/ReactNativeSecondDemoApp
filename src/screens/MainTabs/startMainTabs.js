@@ -18,6 +18,7 @@ Promise.all([
             },
             center: {
               bottomTabs: {
+                id:'BottomTabsId',
                 children: [{
                   stack: {
                     id: "findplacestack",

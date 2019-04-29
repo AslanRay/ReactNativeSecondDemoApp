@@ -8,6 +8,7 @@ import imagePlaceHolder from '../../../assets/beautiful-place.jpg';
 import PlaceInput from '../../components/PlaceInput/PlaceInput';
 import MapView, {Marker} from 'react-native-maps';
 import ImagePicker from 'react-native-image-picker';
+import {Navigation} from 'react-native-navigation';
 
 const { width, height } = Dimensions.get('window');
 
@@ -37,14 +38,31 @@ class SharePlace extends Component {
         });
       };
 
+      componentDidMount() {
+        this.setState({
+          region: {
+            latitude: LATITUDE,
+            longitude: LONGITUDE,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }
+        });     
+      }
+
     placeAddedHandler = () => {
         if (this.state.placeName.trim() === "") {
             return;
           }
         this.props.onAddPlace(this.state.placeName,this.state.region,this.state.pickedImage);
         this.setState({
-            placeName: ''
+            placeName: '',
+            pickedImage:null,
           });
+        Navigation.mergeOptions('BottomTabsId',{
+          bottomTabs: {
+            currentTabIndex:0
+          }
+        })
     }
 
     pickLocationHandler = event => {
@@ -112,7 +130,6 @@ class SharePlace extends Component {
                   <MapView 
                     provider={this.props.provider}
                     initialRegion={this.state.region}
-                    
                     style={styles.googleMap}
                     onPress={this.pickLocationHandler}
                     ref={ref => this.map = ref}
